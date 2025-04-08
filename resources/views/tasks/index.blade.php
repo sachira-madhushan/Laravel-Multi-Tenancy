@@ -25,33 +25,37 @@
                                 </th>
                             </tr>
                         </thead>
-                            <tbody>
-                                @forelse ($tasks as $task)
-                                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                        <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                            {{ $task->name }}
-                                        </td>
-                                        <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                            {{ $task->project->name }}
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <x-link href="{{ route('tasks.edit', $task) }}">Edit</x-link>
-                                            <form method="POST" action="{{ route('tasks.destroy', $task) }}" class="inline-block">
-                                                @csrf
-                                                @method('DELETE')
-                                                <x-danger-button class="bg-red-600" onclick="return confirm('Are you sure?')">Delete</x-danger-button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                        <td colspan="2"
-                                            class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                            {{ __('No tasks found') }}
-                                        </td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
+                        <tbody>
+
+                            @forelse ($tasks as $task)
+                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                    <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                                        {{ $task->name }}
+                                    </td>
+                                    <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                                        {{ $task->project->name }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <x-link href="{{ route('tasks.edit', $task) }}">Edit</x-link>
+                                        <form method="POST" action="{{ route('tasks.destroy', $task) }}"
+                                            class="inline-block">
+                                            @csrf
+                                            @method('DELETE')
+                                            <x-danger-button class="bg-red-600"
+                                                onclick="return confirm('Are you sure?')">Delete</x-danger-button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                    <td colspan="2"
+                                        class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                                        {{ __('No tasks found') }}
+                                    </td>
+                                </tr>
+                            @endforelse
+
+                        </tbody>
                     </table>
                 </div>
             </div>
